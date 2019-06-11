@@ -13,7 +13,7 @@ use Nette\Security\Permission;
 use Nette\SmartObject;
 use cyllenea\ssologin\Exception\GeneralException;
 
-final class Authenticator extends Permission implements IAuthenticator
+class Authenticator extends Permission implements IAuthenticator
 {
 
     use SmartObject;
