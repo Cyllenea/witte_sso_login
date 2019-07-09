@@ -279,7 +279,7 @@ class Authenticator extends Permission implements IAuthenticator
     }
 
     /** @deprecated  */
-    function authenticate(array $credentials)
+    function authenticate(array $credentials): IIdentity
     {
         // TODO: Implement authenticate() method.
     }
