@@ -35,20 +35,11 @@ final class SSOUser extends User
         } catch (GeneralException $e) {
             $this->logout(true);
         }
-    }
 
-	/**
-	 * Logs out the user from the current session.
-	 * @return void
-	 * @param bool $clearIdentity
-	 */
-    public function logout($clearIdentity = false)
-    {
-        if ($this->isLoggedIn()) {
-            $this->storage->setAuthenticated(false);
-        }
-        $this->storage->setIdentity(null);
-        $this->authenticator->destroyAccessToken();
+        $this->onLoggedOut[] = function() {
+            $this->authenticator->destroyAccessToken();
+        };
+
     }
 
 	/**
@@ -57,13 +48,14 @@ final class SSOUser extends User
 	 * @return void
 	 * @throws AuthenticationException if authentication was not successful
 	 */
-    public function login($id = null, $password = null)
+    public function login($user, string $password = null): void
     {
         $this->logout(true);
         if ($id instanceof IIdentity) {
-            $this->storage->setIdentity($id);
+            $this->storage->setIdentity($user);
             $this->storage->setAuthenticated(true);
         }
+        $this->onLoggedIn($this);
     }
 
 }
