@@ -8,6 +8,7 @@ use League\OAuth2\Client\Token\AccessToken;
 use Nette\Http\Session;
 use Nette\Security\IAuthenticator;
 use Nette\Security\Identity;
+use Nette\Security\IIdentity;
 use Nette\Security\IUserStorage;
 use Nette\Security\Permission;
 use Nette\SmartObject;
