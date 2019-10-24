@@ -6,6 +6,7 @@ use League\OAuth2\Client\Provider\GenericProvider;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use League\OAuth2\Client\Token\AccessToken;
 use Nette\Http\Session;
+use Nette\Http\SessionSection;
 use Nette\Security\IAuthenticator;
 use Nette\Security\Identity;
 use Nette\Security\IUserStorage;
@@ -204,7 +205,7 @@ class Authenticator extends Permission implements IAuthenticator
         $this->resourceOwner = null;
     }
 
-    public function getSession(): Session
+    public function getSession(): SessionSection
     {
         return $this->session;
     }
